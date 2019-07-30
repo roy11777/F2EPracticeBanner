@@ -161,11 +161,6 @@
     return this.each(function () {
       var $this = $(this);
       var module = $this.data(ModuleName);
-      // console.log($this);
-      // console.log(module);
-      // console.log(!!module);
-      // console.log(methods);
-      // console.log(options);
       var opts = null;
       // 第二次狀態
       if (!!module) {
@@ -192,43 +187,11 @@
         // console.log(module)
         $this.data(ModuleName, module);
         module.init();
-        // module.buttonClick();
-        // console.log(methods)
-        // console.log(opts)
-        // console.log($this.data(ModuleName));
       }
     });
   };
 })(jQuery);
 
-// $(".banner").banner({
-//   // 設定一開始是否為開或合
-//   openAtStart: true, // [boolean] true | false
-//   // 設定啟動後是否要自動開或合，若設為false，就不要自勳開合；若為true是馬上自動開合；若為數字是幾毫秒之後開合
-//   autoToggle: true, // [boolean|number] true | false | 3000
-//   // 設定收合展開按鈕顯示名稱
-//   button: {
-//     closeText: "收合", // [string]
-//     openText: "展開", // [string]
-//     class: "btn" // [string]
-//   },
-//   // 設定模組在各狀態時的class
-//   class: {
-//     closed: "closed", // [string]
-//     closing: "closing", // [string]
-//     opened: "opened", // [string]
-//     opening: "opening" // [string]
-//   },
-//   // 是否要有transition效果
-//   transition: true,
-//   // 當有transition時，要執行的callback function
-//   // tenasitionend 事件
-//   whenTransition: function () {
-//     console.log("whenTransition");
-//   }
-// });
-
-// 設定好function等待呼叫
 
 $(".banner").banner("", {});
 $(".banner").banner("buttonClick");
