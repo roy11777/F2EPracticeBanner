@@ -1,0 +1,101 @@
+.btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 4px 4px 4px 10px;
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 3px 0 0 0;
+  border: 0;
+  color: #a3a3a3;
+  cursor: pointer;
+}
+
+.btn:hover {
+  color: #fff;
+}
+
+.banner > div {
+  margin: 0 auto;
+  height: 300px;
+  width: 960px;
+  overflow: hidden;
+  position: relative;
+  -webkit-transition: 0.7s;
+  transition: 0.7s;
+}
+
+.banner .img {
+  margin-left: -12.5%;
+}
+
+.opened div {
+  height: 300px;
+}
+
+.opened .img {
+  top: 0;
+  position: absolute;
+}
+
+.opened .btn::after {
+  content: "";
+  display: inline-block;
+  height: 0;
+  width: 0;
+  margin: 2px;
+  border-style: solid;
+  border-width: 0 3px 3px;
+  border-color: transparent transparent #a3a3a3;
+}
+
+.closing div {
+  height: 40px;
+}
+
+.closing .btn::after {
+  content: "";
+  display: inline-block;
+  height: 0;
+  width: 0;
+  margin: 2px;
+  border-style: solid;
+  border-width: 3px 3px 0;
+  border-color: #a3a3a3 transparent transparent;
+}
+
+.closed div {
+  height: 40px;
+}
+
+.closed .img {
+  top: -300px;
+  position: absolute;
+}
+
+.closed .btn::after {
+  content: "";
+  display: inline-block;
+  height: 0;
+  width: 0;
+  margin: 2px;
+  border-style: solid;
+  border-width: 3px 3px 0;
+  border-color: #a3a3a3 transparent transparent;
+}
+
+.opening div {
+  height: 300px;
+}
+
+.opening .btn::after {
+  content: "";
+  display: inline-block;
+  height: 0;
+  width: 0;
+  margin: 2px;
+  border-style: solid;
+  border-width: 0 3px 3px;
+  border-color: transparent transparent #a3a3a3;
+}
+/*# sourceMappingURL=main.css.map */
