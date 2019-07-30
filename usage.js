@@ -1,9 +1,9 @@
-(function($) {
+(function ($) {
   "use strict";
   // 名稱
   var ModuleName = "banner";
   // 類別
-  var Module = function(ele, options) {
+  var Module = function (ele, options) {
     // 該元素
     this.ele = ele;
     // $(ele)為操作的DOM
@@ -34,21 +34,21 @@
     transition: true,
     // 當有transition時，要執行的callback function
     // tenasitionend 事件
-    whenTransition: function() {
+    whenTransition: function () {
       console.log("whenTransition");
     },
     style: "classname",
-    whenClickCallback: function() {
+    whenClickCallback: function () {
       //   console.log("whenClickCallback");
     }
   };
   // Function
 
-  Module.prototype.open = function() {
+  Module.prototype.open = function () {
     // console.log("123")
   };
 
-  Module.prototype.buttonClick = function() {
+  Module.prototype.buttonClick = function () {
     var banner = this.$ele;
     var btn = banner.find("." + this.option.button.class);
     var imgContainer = banner.find("div");
@@ -56,7 +56,6 @@
 
     // function裡如有包function裡面的this是指向Window因此要在此層先固定this指向
     var opened = this.option.class.opened;
-    console.log(opened);
     var closing = this.option.class.closing;
     var opening = this.option.class.opening;
     var closed = this.option.class.closed;
@@ -65,32 +64,17 @@
     var openText = this.option.button.openText;
     var closeText = this.option.button.closeText;
 
-    btn.click(function() {
-      var bannerStatusOpen = banner.hasClass("opened");
-      var bannerStatusClose = banner.hasClass("closed");
-      console.log(banner.hasClass("closed"));
+    btn.on("click", function () {
+      var bannerStatusOpen = banner.hasClass(opened);
+      var bannerStatusClose = banner.hasClass(closed);
+      var transitinoInterval = setInterval(whenTransition, 15);
+
       if (bannerStatusOpen) {
         // 換成展開字樣
         btn.text(openText);
         banner.removeClass(opened);
         banner.addClass(closing);
         // transition中刷console.log
-        var transitinoInterval = setInterval(whenTransition, 15);
-
-        // transition結束後
-        banner.on("transitionend", function() {
-          banner.addClass(closed);
-          banner.removeClass(closing);
-          clearInterval(transitinoInterval);
-          // TRANSITION結束再觸發並調整圖片位置成顯示圖片底部內容
-          img.css({
-            top: "-300px",
-            margin: "0 0 0 -12%",
-            position: "absolute"
-          });
-          console.log("hihi");
-        });
-
         imgContainer.css({ height: "40px", overflow: "hidden" });
       }
       if (bannerStatusClose) {
@@ -99,24 +83,37 @@
         banner.removeClass(closed);
         banner.addClass(opening);
         // transition中刷console.log
-        var transitinoInterval = setInterval(whenTransition, 15);
         img.css({ top: "0px", margin: "0 0 0 -12%", position: "absolute" });
-
-        // transition結束後
-        banner.on("transitionend", function() {
-          banner.addClass(opened);
-          banner.removeClass(opening);
-          clearInterval(transitinoInterval);
-          // TRANSITION結束再觸發並調整圖片位置成顯示圖片底部內容
-          console.log("heyhey");
-        });
         imgContainer.css({ height: "300px", overflow: "hidden" });
       }
+
+      // transition結束後
+      banner.on("transitionend", function () {
+        if (banner.hasClass(closing)) {
+          banner.addClass(closed);
+          banner.removeClass(closing);
+          // TRANSITION結束再觸發並調整圖片位置成顯示圖片底部內容
+          img.css({
+            top: "-300px",
+            margin: "0 0 0 -12%",
+            position: "absolute"
+          });
+          console.log("已關");
+        }
+        if (banner.hasClass(opening)) {
+          banner.addClass(opened);
+          banner.removeClass(opening);
+          // TRANSITION結束再觸發並調整圖片位置成顯示圖片底部內容
+          console.log("已開");
+        }
+        // 中止interval
+        clearInterval(transitinoInterval);
+      });
     });
   };
 
   // 初始狀態
-  Module.prototype.init = function() {
+  Module.prototype.init = function () {
     var banner = this.$ele;
     // 初始化class顯示opend
     banner.addClass(this.option.class.opened);
@@ -137,21 +134,21 @@
     btn.text(this.option.button.closeText);
     btn
       .css({
-        position: "absolute",
-        right: "0",
-        bottom: "0",
-        padding: "2px 2px 2px 8px",
+        "position": "absolute",
+        "right": "0",
+        "bottom": "0",
+        "padding": "2px 2px 2px 8px",
         "font-size": "13px",
         "background-color": "rgba(0,0,0,.8)",
-        border: "0",
-        color: "#a3a3a3",
-        cursor: "pointer"
+        "border": "0",
+        "color": "#a3a3a3",
+        "cursor": "pointer"
       })
       .hover(
-        function() {
+        function () {
           $(this).css("color", "#fff");
         },
-        function() {
+        function () {
           $(this).css("color", "#a3a3a3");
         }
       );
@@ -160,8 +157,8 @@
   };
 
   // 街口
-  $.fn[ModuleName] = function(methods, options) {
-    return this.each(function() {
+  $.fn[ModuleName] = function (methods, options) {
+    return this.each(function () {
       var $this = $(this);
       var module = $this.data(ModuleName);
       // console.log($this);
