@@ -18,15 +18,20 @@
 .banner > div {
   margin: 0 auto;
   height: 300px;
-  width: 960px;
+  width: 1200px;
   overflow: hidden;
   position: relative;
   -webkit-transition: 0.7s;
   transition: 0.7s;
 }
 
-.banner .img {
-  margin-left: -12.5%;
+@media screen and (max-width: 1279px) {
+  .banner > div {
+    width: 960px;
+  }
+  .banner img {
+    margin-left: -12.5%;
+  }
 }
 
 .opened div {

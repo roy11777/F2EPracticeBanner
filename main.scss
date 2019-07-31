@@ -1,98 +1,115 @@
+$screen-phone: 320px; // 手機 ;
+$screen-tablet: 768px; // 平板
+$screen-desktop: 980px; // 筆電、桌機
+$screen-lg-desktop: 1280px; // 較大桌機　
+
+$screen-phone-max: 767px;
+$screen-tablet-max: 979px;
+$screen-desktop-max: 1279px;
+
+$screen-lg-desktop-wrapper: 960px;
+$screen-desktop-wrapper: 1200px;
+
 @mixin buttonArrowUp {
-    content: "";
-    display: inline-block;
-    height: 0;
-    width: 0;
-    margin: 2px;
-    border-style: solid;
-    border-width: 0 3px 3px;
-    border-color: transparent transparent #a3a3a3
+  content: "";
+  display: inline-block;
+  height: 0;
+  width: 0;
+  margin: 2px;
+  border-style: solid;
+  border-width: 0 3px 3px;
+  border-color: transparent transparent #a3a3a3;
 }
 
 @mixin buttonArrowdown {
-    content: "";
-    display: inline-block;
-    height: 0;
-    width: 0;
-    margin: 2px;
-    border-style: solid;
-    border-width: 3px 3px 0;
-    border-color: #a3a3a3 transparent transparent
+  content: "";
+  display: inline-block;
+  height: 0;
+  width: 0;
+  margin: 2px;
+  border-style: solid;
+  border-width: 3px 3px 0;
+  border-color: #a3a3a3 transparent transparent;
 }
 
 // 展開收合按鈕基礎樣式
 .btn {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding: 4px 4px 4px 10px;
-    font-size: 13px;
-    background: rgba(0, 0, 0, .8);
-    border-radius: 3px 0 0 0;
-    border: 0;
-    color: #a3a3a3;
-    cursor: pointer;
-    &:hover {
-        color: #fff
-    }
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 4px 4px 4px 10px;
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 3px 0 0 0;
+  border: 0;
+  color: #a3a3a3;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+  }
 }
 
 .banner {
-    // banner warpper設定
-    >div {
-        margin: 0 auto;
-        height: 300px;
-        width: 960px;
-        overflow: hidden;
-        position: relative;
-        transition: 0.7s;
+  // banner warpper設定
+  > div {
+    margin: 0 auto;
+    height: 300px;
+    width: $screen-desktop-wrapper;
+    overflow: hidden;
+    position: relative;
+    transition: 0.7s;
+  }
+  @media screen and (max-width: $screen-desktop-max) {
+    > div {
+      width: $screen-lg-desktop-wrapper;
     }
     // 圖片左移
-    .img {
-        margin-left: -12.5%;
+    img {
+      margin-left: -12.5%;
     }
+  }
 }
 
 .opened {
-    div {
-        height: 300px
-    }
-    .img {
-        top: 0;
-        position: absolute;
-    }
-    .btn::after {
-        @include buttonArrowUp
-    }
+  div {
+    height: 300px;
+  }
+  .img {
+    top: 0;
+    position: absolute;
+  }
+  .btn::after {
+    @include buttonArrowUp;
+  }
 }
 
 .closing {
-    div {
-        height: 40px
-    }
-    .btn::after {
-        @include buttonArrowdown
-    }
+  div {
+    height: 40px;
+  }
+  .btn::after {
+    @include buttonArrowdown;
+  }
 }
 
 .closed {
-    div {
-        height: 40px
-    }
-    .img {
-        top: -300px;
-        position: absolute;
-    }
-    .btn::after {
-        @include buttonArrowdown
-    }
+  div {
+    height: 40px;
+  }
+  .img {
+    top: -300px;
+    position: absolute;
+  }
+  .btn::after {
+    @include buttonArrowdown;
+  }
 }
 
 .opening {
-    div {
-        height: 300px
-    }
-    .btn::after {
-        @include buttonArrowUp
-    }
+  div {
+    height: 300px;
+  }
+  .btn::after {
+    @include buttonArrowUp;
+  }
 }
